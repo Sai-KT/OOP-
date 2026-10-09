@@ -53,6 +53,12 @@ const elements = {
     modeBanner: document.getElementById('mode-banner'),
     statusDot: document.getElementById('status-dot'),
     statusText: document.getElementById('backend-status-text'),
+    modeStateTag: document.getElementById('mode-state-tag'),
+
+    // Sidebar Quick Action Hub
+    sidebarBtnAddStudent: document.getElementById('sidebar-btn-add-student'),
+    sidebarBtnAddCourse: document.getElementById('sidebar-btn-add-course'),
+    sidebarBtnEnroll: document.getElementById('sidebar-btn-enroll'),
 
     // Dashboard Hero & Metrics
     heroBtnAddStudent: document.getElementById('hero-btn-add-student'),
@@ -1135,16 +1141,31 @@ function updateBackendStatusUI(isSuccess, errorMsg = '') {
         elements.statusText.textContent = 'Simulated Data (Demo Mode)';
         elements.mockLabel.textContent = 'Demo (Mock) Mode';
         elements.modeBanner.classList.remove('hidden');
+        if (elements.modeStateTag) {
+            elements.modeStateTag.textContent = 'Mock Active';
+            elements.modeStateTag.style.backgroundColor = 'var(--primary-light)';
+            elements.modeStateTag.style.color = 'var(--primary)';
+        }
     } else {
         elements.modeBanner.classList.add('hidden');
         if (isSuccess) {
             elements.statusDot.className = 'status-indicator-dot online';
             elements.statusText.textContent = 'Connected (Spring Boot :8080)';
             elements.mockLabel.textContent = 'Live Backend';
+            if (elements.modeStateTag) {
+                elements.modeStateTag.textContent = 'Live Online';
+                elements.modeStateTag.style.backgroundColor = 'var(--success-light)';
+                elements.modeStateTag.style.color = 'var(--success)';
+            }
         } else {
             elements.statusDot.className = 'status-indicator-dot offline';
             elements.statusText.textContent = 'Backend Offline';
             elements.mockLabel.textContent = 'Live Backend (Offline)';
+            if (elements.modeStateTag) {
+                elements.modeStateTag.textContent = 'Offline';
+                elements.modeStateTag.style.backgroundColor = 'var(--danger-light)';
+                elements.modeStateTag.style.color = 'var(--danger)';
+            }
         }
     }
 }
@@ -1200,7 +1221,26 @@ function initializeEventListeners() {
     // 4. Mock Mode Toggle Switch
     elements.mockToggle.addEventListener('change', handleMockModeToggle);
 
-    // 5. Dashboard Hero Actions
+    // 5. Sidebar Quick Action Hub
+    if (elements.sidebarBtnAddStudent) {
+        elements.sidebarBtnAddStudent.addEventListener('click', () => {
+            navigateToSection('students');
+            openAddStudentModal();
+        });
+    }
+    if (elements.sidebarBtnAddCourse) {
+        elements.sidebarBtnAddCourse.addEventListener('click', () => {
+            navigateToSection('courses');
+            openAddCourseModal();
+        });
+    }
+    if (elements.sidebarBtnEnroll) {
+        elements.sidebarBtnEnroll.addEventListener('click', () => {
+            navigateToSection('enrollments');
+        });
+    }
+
+    // 6. Dashboard Hero Actions
     elements.heroBtnAddStudent.addEventListener('click', () => {
         navigateToSection('students');
         openAddStudentModal();
@@ -1214,7 +1254,7 @@ function initializeEventListeners() {
         navigateToSection('students');
     });
 
-    // 6. Student Quick Filter Tabs
+    // 7. Student Quick Filter Tabs
     elements.filterTabBtns.forEach(tab => {
         tab.addEventListener('click', () => {
             elements.filterTabBtns.forEach(t => t.classList.remove('active'));
@@ -1244,7 +1284,7 @@ function initializeEventListeners() {
     elements.studentModalClose.addEventListener('click', () => elements.studentModal.close());
     elements.studentModalCancel.addEventListener('click', () => elements.studentModal.close());
 
-    // 7. Course Management Events
+    // 8. Course Management Events
     elements.openAddCourseBtn.addEventListener('click', openAddCourseModal);
     elements.courseForm.addEventListener('submit', handleCourseFormSubmit);
     elements.courseModalClose.addEventListener('click', () => elements.courseModal.close());
@@ -1257,7 +1297,7 @@ function initializeEventListeners() {
         elements.courseSearch.focus();
     });
 
-    // 8. Enrollment Form Events
+    // 9. Enrollment Form Events
     elements.enrollForm.addEventListener('submit', handleEnrollmentSubmit);
     elements.enrollmentSearch.addEventListener('input', renderEnrollmentsTable);
     elements.enrollmentSearchClear.addEventListener('click', () => {
@@ -1266,10 +1306,24 @@ function initializeEventListeners() {
         elements.enrollmentSearch.focus();
     });
 
-    // 9. Confirm Modal Events
+    // 10. Confirm Modal Events
     elements.confirmModalProceed.addEventListener('click', handleConfirmModalProceed);
     elements.confirmModalCancel.addEventListener('click', () => elements.confirmModal.close());
     elements.confirmModalClose.addEventListener('click', () => elements.confirmModal.close());
+
+    // 11. Global Keyboard Navigation (D, S, C, E)
+    document.addEventListener('keydown', (e) => {
+        // Ignore if user is inside an input, textarea, select, or if any dialog is open
+        const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+        if (activeTag === 'input' || activeTag === 'textarea' || activeTag === 'select') return;
+        if (elements.studentModal.open || elements.courseModal.open || elements.confirmModal.open) return;
+
+        const key = e.key.toLowerCase();
+        if (key === 'd' || key === '1') navigateToSection('dashboard');
+        else if (key === 's' || key === '2') navigateToSection('students');
+        else if (key === 'c' || key === '3') navigateToSection('courses');
+        else if (key === 'e' || key === '4') navigateToSection('enrollments');
+    });
 }
 
 /* ============================================================================
