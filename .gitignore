@@ -1,0 +1,22 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE & Editor files
+.idea/
+.vscode/
+*.iml
+*.iws
+
+# Build artifacts (if Java/Spring Boot is added)
+target/
+build/
+.gradle/
+*.class
+*.jar
+*.war
