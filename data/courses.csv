@@ -1,0 +1,5 @@
+id,courseCode,courseName,credits,maxCapacity
+1,CS201,Data Structures & Algorithms,4,40
+2,CS302,Object Oriented Programming (Java),4,50
+3,IT301,Database Management Systems,3,45
+4,EC204,Digital Logic Design,3,35

@@ -1,0 +1,4 @@
+id,studentId,studentName,courseCode,courseName,registrationDate
+1,STU101,Rahul Sharma,CS302,Object Oriented Programming (Java),2026-10-10 00:00:00
+2,STU102,Priya Patel,CS201,Data Structures & Algorithms,2026-10-10 00:00:00
+3,STU103,Aman Verma,IT301,Database Management Systems,2026-10-10 00:00:00

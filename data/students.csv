@@ -1,0 +1,5 @@
+id,studentId,fullName,email,phoneNumber,department,semester,studentType
+1,STU101,Rahul Sharma,rahul.sharma@college.edu,9876543210,Computer Science,4,Undergraduate
+2,STU102,Priya Patel,priya.patel@college.edu,9823456781,Information Technology,6,Undergraduate
+3,STU103,Aman Verma,aman.verma@college.edu,9123456789,Computer Science,2,Postgraduate
+4,STU104,Sneha Nair,sneha.nair@college.edu,9786543210,Electronics & Communication,4,Undergraduate

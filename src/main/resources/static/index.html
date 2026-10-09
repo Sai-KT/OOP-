@@ -115,15 +115,15 @@
                             <span class="status-indicator-dot" id="status-dot"></span>
                             <span class="mode-label">Backend Status</span>
                         </div>
-                        <span class="mode-state-tag" id="mode-state-tag">Mock Active</span>
+                        <span class="mode-state-tag" id="mode-state-tag">Live Server</span>
                     </div>
-                    <p class="mode-description" id="backend-status-text">Simulated Data (Demo Mode)</p>
+                    <p class="mode-description" id="backend-status-text">Connected to Java Spring Boot (Port 8080)</p>
                     <div class="mode-switch-wrapper">
-                        <label class="switch-container" title="Toggle between Mock Demo and Live Spring Boot Backend">
-                            <input type="checkbox" id="mock-mode-toggle" checked>
+                        <label class="switch-container" title="Toggle between Live Spring Boot Backend and Demo Mode">
+                            <input type="checkbox" id="mock-mode-toggle">
                             <span class="slider"></span>
                         </label>
-                        <span class="switch-label" id="mock-toggle-label">Demo (Mock) Mode</span>
+                        <span class="switch-label" id="mock-toggle-label">Live Backend</span>
                     </div>
                 </div>
 
@@ -199,8 +199,8 @@
                 </div>
             </header>
 
-            <!-- Mode Notice Banner (Displayed when Mock Demo mode is active) -->
-            <div class="mode-banner" id="mode-banner">
+            <!-- Mode Notice Banner (Displayed only when Mock Demo mode is active) -->
+            <div class="mode-banner hidden" id="mode-banner">
                 <div class="mode-banner-content">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10"/>

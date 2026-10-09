@@ -34,8 +34,8 @@ const API_BASE_URL = ''; // Relative path so it works seamlessly on http://local
 
 // Configuration for API service
 const ApiConfig = {
-    // Flag to enable/disable Mock Demo mode for testing before backend is started
-    useMock: true,
+    // Default to Live Spring Boot Java backend
+    useMock: false,
     
     // Switch between Mock mode and Live Spring Boot backend
     setMockMode(enable) {
