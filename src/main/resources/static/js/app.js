@@ -1150,7 +1150,7 @@ function updateBackendStatusUI(isSuccess, errorMsg = '') {
         elements.modeBanner.classList.add('hidden');
         if (isSuccess) {
             elements.statusDot.className = 'status-indicator-dot online';
-            elements.statusText.textContent = 'Connected (Spring Boot :8080)';
+            elements.statusText.textContent = `Connected (Spring Boot :${window.location.port || '8081'})`;
             elements.mockLabel.textContent = 'Live Backend';
             if (elements.modeStateTag) {
                 elements.modeStateTag.textContent = 'Live Online';
@@ -1341,7 +1341,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (isLiveServerAvailable) {
         ApiConfig.setMockMode(false);
         elements.mockToggle.checked = false;
-        console.log('Live Spring Boot backend detected on localhost:8080');
+        console.log(`Live Spring Boot backend detected on localhost:${window.location.port || '8081'}`);
     } else {
         ApiConfig.setMockMode(true);
         elements.mockToggle.checked = true;

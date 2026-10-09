@@ -37,7 +37,7 @@ The backend follows a **clean 5-tier layered architecture**:
 +-------------------------------------------------------------------------+
 |                  Client Browser (HTML5 / CSS3 / Vanilla JS)             |
 +-------------------------------------------------------------------------+
-                                    | HTTP JSON Requests (port 8080)
+                                    | HTTP JSON Requests (port 8081)
                                     v
 +-------------------------------------------------------------------------+
 | Layer 1: REST Controllers (StudentController, CourseController, etc.)   |
@@ -195,7 +195,7 @@ public interface Repository<T, ID> {
 **Answer**: It acts as a centralized exception translation layer using `@RestControllerAdvice`. Instead of littering every controller method with `try-catch`, it catches domain exceptions (`StudentNotFoundException`, `CourseCapacityExceededException`) and translates them into uniform HTTP JSON error responses with status codes 400, 404, or 409.
 
 ### Q14: What is the role of Spring Boot in this project?
-**Answer**: Spring Boot is used strictly as a lightweight transport layer: handling HTTP REST requests, serving the frontend static files on port 8080, and managing dependency injection. All core business rules, entity models, validation, and file I/O are implemented in pure Java OOP.
+**Answer**: Spring Boot is used strictly as a lightweight transport layer: handling HTTP REST requests, serving the frontend static files on port 8081, and managing dependency injection. All core business rules, entity models, validation, and file I/O are implemented in pure Java OOP.
 
 ### Q15: Why are `DEFAULT_CAPACITY` and `DEFAULT_CREDITS` declared as `public static final`?
 **Answer**:
@@ -229,7 +229,7 @@ Follow these steps to demonstrate the application to your professor or examiner:
 
 1. **Launch the Application**:
    - Run `mvn spring-boot:run` in the terminal.
-   - Open [http://localhost:8080](http://localhost:8080) in your web browser.
+   - Open [http://localhost:8081](http://localhost:8081) in your web browser.
    - Point out the **Executive Midnight Navy sidebar** and live connection indicator showing **"Live Server"**.
 
 2. **Dashboard Overview**:
@@ -299,5 +299,5 @@ mvn package
 mvn spring-boot:run
 
 # 5. Access the application in any web browser
-http://localhost:8080
+http://localhost:8081
 ```

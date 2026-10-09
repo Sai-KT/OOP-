@@ -71,7 +71,7 @@ OOP ag/
     │   │   └── config/
     │   │       └── AppConfiguration.java     # Singleton bean & CORS setup
     │   └── resources/
-    │       ├── application.properties        # Port 8080 and storage config
+    │       ├── application.properties        # Port 8081 and storage config
     │       └── static/                       # Served directly by Spring Boot
     │           ├── index.html                # Executive single-page dashboard
     │           ├── css/style.css             # Midnight navy executive palette
@@ -107,9 +107,9 @@ mvn spring-boot:run
 ### 3. Open in Your Web Browser
 Navigate to:
 ```text
-http://localhost:8080
+http://localhost:8081
 ```
-The embedded Tomcat web server serves both the Spring Boot REST APIs and the static HTML5 dashboard simultaneously on port 8080.
+The embedded Tomcat web server serves both the Spring Boot REST APIs and the static HTML5 dashboard simultaneously on port 8081.
 
 ---
 

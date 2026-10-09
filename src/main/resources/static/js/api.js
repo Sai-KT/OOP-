@@ -30,7 +30,7 @@
  */
 
 // Base URL for Spring Boot backend API
-const API_BASE_URL = ''; // Relative path so it works seamlessly on http://localhost:8080/
+const API_BASE_URL = ''; // Relative path so it works seamlessly on any port (e.g. http://localhost:8081/)
 
 // Configuration for API service
 const ApiConfig = {
@@ -203,7 +203,7 @@ async function request(endpoint, options = {}) {
     } catch (err) {
         // Clear message if backend server is unreachable
         if (err.name === 'TypeError' && err.message.includes('fetch')) {
-            throw new Error(`Cannot connect to Spring Boot backend at ${url}. Please ensure your Spring Boot server is running on port 8080.`);
+            throw new Error(`Cannot connect to Spring Boot backend at ${url}. Please ensure your Spring Boot server is running on port ${window.location.port || '8081'}.`);
         }
         throw err;
     }
