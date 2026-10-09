@@ -70,6 +70,24 @@
 
     --sidebar-width: 260px;
     --header-height: 70px;
+
+    /* Sidebar Palette (Deep Midnight Navy Executive Palette) */
+    --sidebar-bg: #0f172a;
+    --sidebar-bg-subtle: #1e293b;
+    --sidebar-bg-hover: rgba(255, 255, 255, 0.08);
+    --sidebar-border: rgba(255, 255, 255, 0.08);
+    --sidebar-border-light: rgba(255, 255, 255, 0.12);
+    --sidebar-text: #f8fafc;
+    --sidebar-text-muted: #94a3b8;
+    --sidebar-text-dim: #64748b;
+    --sidebar-accent: #3b82f6;
+    --sidebar-accent-light: #60a5fa;
+    --sidebar-active-bg: linear-gradient(90deg, rgba(37, 99, 235, 0.28) 0%, rgba(37, 99, 235, 0.08) 100%);
+    --sidebar-active-text: #ffffff;
+    --sidebar-card-bg: rgba(30, 41, 59, 0.7);
+    --sidebar-card-border: rgba(255, 255, 255, 0.09);
+    --sidebar-badge-bg: rgba(255, 255, 255, 0.1);
+    --sidebar-badge-text: #e2e8f0;
 }
 
 /* Dark Theme Overrides */
@@ -101,6 +119,15 @@
     --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
     --shadow-hover: 0 14px 32px -4px rgba(0, 0, 0, 0.65);
     --shadow-modal: 0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.1);
+
+    /* Dark Theme Sidebar Overrides (Deep Obsidian Slate) */
+    --sidebar-bg: #080d19;
+    --sidebar-bg-subtle: #111a2e;
+    --sidebar-bg-hover: rgba(255, 255, 255, 0.06);
+    --sidebar-border: rgba(255, 255, 255, 0.06);
+    --sidebar-border-light: rgba(255, 255, 255, 0.1);
+    --sidebar-card-bg: rgba(17, 26, 46, 0.7);
+    --sidebar-card-border: rgba(255, 255, 255, 0.07);
 }
 
 /* --------------------------------------------------------------------------
@@ -156,8 +183,8 @@ code, .font-mono, td strong, .badge-credits {
    -------------------------------------------------------------------------- */
 .sidebar {
     width: var(--sidebar-width);
-    background-color: var(--bg-surface);
-    border-right: 1px solid var(--border-color);
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--sidebar-border);
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -165,6 +192,7 @@ code, .font-mono, td strong, .badge-credits {
     bottom: 0;
     left: 0;
     z-index: 100;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.14);
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease;
 }
 
@@ -174,7 +202,7 @@ code, .font-mono, td strong, .badge-credits {
     align-items: center;
     gap: 14px;
     padding: 0 20px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--sidebar-border);
 }
 
 .brand-logo {
@@ -199,13 +227,13 @@ code, .font-mono, td strong, .badge-credits {
     font-size: 16px;
     font-weight: 800;
     letter-spacing: -0.3px;
-    color: var(--text-primary);
+    color: var(--sidebar-text);
     line-height: 1.2;
 }
 
 .brand-badge {
     font-size: 11px;
-    color: var(--primary);
+    color: var(--sidebar-accent-light);
     font-weight: 700;
     letter-spacing: 0.3px;
 }
@@ -216,11 +244,11 @@ code, .font-mono, td strong, .badge-credits {
     align-items: center;
     gap: 8px;
     padding: 8px 20px;
-    background: var(--bg-subtle);
-    border-bottom: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--sidebar-border);
     font-size: 11.5px;
     font-weight: 600;
-    color: var(--text-secondary);
+    color: var(--sidebar-text-muted);
 }
 
 .sub-banner-dot {
@@ -228,7 +256,7 @@ code, .font-mono, td strong, .badge-credits {
     height: 7px;
     border-radius: 50%;
     background-color: var(--success);
-    box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
 }
 
 /* Sidebar Quick Action Hub */
@@ -241,7 +269,7 @@ code, .font-mono, td strong, .badge-credits {
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    color: var(--text-muted);
+    color: var(--sidebar-text-dim);
     margin-bottom: 8px;
     padding-left: 4px;
 }
@@ -259,9 +287,9 @@ code, .font-mono, td strong, .badge-credits {
     gap: 5px;
     padding: 6px 8px;
     border-radius: var(--radius-sm);
-    background-color: var(--bg-subtle);
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
+    background-color: var(--sidebar-bg-subtle);
+    border: 1px solid var(--sidebar-border-light);
+    color: var(--sidebar-text);
     font-size: 11.5px;
     font-weight: 700;
     cursor: pointer;
@@ -273,7 +301,7 @@ code, .font-mono, td strong, .badge-credits {
     color: #ffffff;
     border-color: transparent;
     transform: translateY(-1px);
-    box-shadow: 0 3px 8px var(--primary-glow);
+    box-shadow: 0 4px 12px var(--primary-glow);
 }
 
 .quick-action-btn svg {
@@ -289,12 +317,29 @@ code, .font-mono, td strong, .badge-credits {
     overflow-y: auto;
 }
 
+.nav-menu::-webkit-scrollbar {
+    width: 4px;
+}
+
+.nav-menu::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.nav-menu::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-full);
+}
+
+.nav-menu::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
 .nav-group-title {
     font-size: 10.5px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    color: var(--text-muted);
+    color: var(--sidebar-text-dim);
     padding: 10px 10px 4px 10px;
 }
 
@@ -304,7 +349,7 @@ code, .font-mono, td strong, .badge-credits {
     gap: 12px;
     padding: 9px 12px;
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
+    color: var(--sidebar-text-muted);
     background: transparent;
     border: none;
     font-size: 13.5px;
@@ -323,32 +368,33 @@ code, .font-mono, td strong, .badge-credits {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.04);
+    color: var(--sidebar-text-muted);
     transition: all 0.18s ease;
     flex-shrink: 0;
 }
 
 .nav-item:hover {
-    background-color: var(--bg-subtle);
-    color: var(--primary);
+    background-color: var(--sidebar-bg-hover);
+    color: var(--sidebar-text);
     transform: translateX(2px);
 }
 
 .nav-item:hover .nav-icon-wrapper {
-    background-color: rgba(37, 99, 235, 0.1);
-    color: var(--primary);
+    background-color: rgba(37, 99, 235, 0.2);
+    color: var(--sidebar-accent-light);
 }
 
 .nav-item.active {
-    background: linear-gradient(90deg, var(--primary-light) 0%, transparent 100%);
-    color: var(--primary);
+    background: var(--sidebar-active-bg);
+    color: var(--sidebar-active-text);
     font-weight: 700;
 }
 
 .nav-item.active .nav-icon-wrapper {
     background: var(--primary-gradient);
     color: #ffffff;
-    box-shadow: 0 2px 6px var(--primary-glow);
+    box-shadow: 0 2px 8px var(--primary-glow);
 }
 
 .nav-item.active::before {
@@ -359,7 +405,8 @@ code, .font-mono, td strong, .badge-credits {
     bottom: 6px;
     width: 3.5px;
     border-radius: var(--radius-full);
-    background: var(--primary);
+    background: var(--sidebar-accent);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
 }
 
 .nav-badge {
@@ -368,14 +415,15 @@ code, .font-mono, td strong, .badge-credits {
     font-weight: 700;
     padding: 2px 8px;
     border-radius: var(--radius-full);
-    background-color: var(--bg-subtle);
-    color: var(--text-secondary);
+    background-color: var(--sidebar-badge-bg);
+    color: var(--sidebar-badge-text);
     transition: all 0.2s ease;
 }
 
 .nav-item.active .nav-badge {
     background-color: var(--primary);
-    color: var(--text-white);
+    color: #ffffff;
+    box-shadow: 0 0 8px var(--primary-glow);
 }
 
 .nav-key-hint {
@@ -385,9 +433,9 @@ code, .font-mono, td strong, .badge-credits {
     font-family: 'JetBrains Mono', monospace;
     padding: 1px 6px;
     border-radius: 4px;
-    background-color: var(--bg-subtle);
-    color: var(--text-muted);
-    border: 1px solid var(--border-color);
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--sidebar-text-muted);
+    border: 1px solid var(--sidebar-border);
     display: none;
 }
 
@@ -398,17 +446,18 @@ code, .font-mono, td strong, .badge-credits {
 /* Sidebar Footer & Mode Indicator */
 .sidebar-footer {
     padding: 14px 16px;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--sidebar-border);
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
 .mode-card {
-    background-color: var(--bg-subtle);
+    background-color: var(--sidebar-card-bg);
     border-radius: var(--radius-md);
     padding: 12px 14px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--sidebar-card-border);
+    backdrop-filter: blur(8px);
 }
 
 .mode-header {
@@ -429,7 +478,7 @@ code, .font-mono, td strong, .badge-credits {
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.6px;
-    color: var(--text-secondary);
+    color: var(--sidebar-text-muted);
 }
 
 .mode-state-tag {
@@ -437,8 +486,9 @@ code, .font-mono, td strong, .badge-credits {
     font-weight: 700;
     padding: 2px 7px;
     border-radius: var(--radius-full);
-    background-color: var(--primary-light);
-    color: var(--primary);
+    background-color: rgba(37, 99, 235, 0.25);
+    color: #93c5fd;
+    border: 1px solid rgba(147, 197, 253, 0.2);
 }
 
 .status-indicator-dot {
@@ -468,7 +518,7 @@ code, .font-mono, td strong, .badge-credits {
 
 .mode-description {
     font-size: 11.5px;
-    color: var(--text-secondary);
+    color: var(--sidebar-text-muted);
     margin-bottom: 10px;
     line-height: 1.35;
 }
@@ -479,6 +529,16 @@ code, .font-mono, td strong, .badge-credits {
     gap: 9px;
 }
 
+.sidebar .switch-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--sidebar-text);
+}
+
+.sidebar .slider {
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
 /* User Card in Footer */
 .sidebar-user-card {
     display: flex;
@@ -486,8 +546,8 @@ code, .font-mono, td strong, .badge-credits {
     gap: 10px;
     padding: 8px 10px;
     border-radius: var(--radius-md);
-    background-color: var(--bg-subtle);
-    border: 1px solid var(--border-color);
+    background-color: var(--sidebar-card-bg);
+    border: 1px solid var(--sidebar-card-border);
 }
 
 .user-avatar-circle {
@@ -514,13 +574,13 @@ code, .font-mono, td strong, .badge-credits {
 .user-name {
     font-size: 12px;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--sidebar-text);
     line-height: 1.2;
 }
 
 .user-role {
     font-size: 10.5px;
-    color: var(--text-muted);
+    color: var(--sidebar-text-muted);
 }
 
 .user-status-pill {
